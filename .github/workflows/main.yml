@@ -9,6 +9,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Generate Icon Sizes
+        run: |
+          SRC="CaptureSample/Assets.xcassets/AppIcon.appiconset/AppIcon.png"
+          sips -z 40 40   "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon40.png"
+          sips -z 58 58   "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon58.png"
+          sips -z 60 60   "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon60.png"
+          sips -z 80 80   "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon80.png"
+          sips -z 87 87   "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon87.png"
+          sips -z 120 120 "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon120.png"
+          sips -z 180 180 "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon180.png"
+          sips -z 1024 1024 "$SRC" --out "CaptureSample/Assets.xcassets/AppIcon.appiconset/Icon1024.png"
+
       - name: Build Unsigned iOS Application
         run: |
           xcodebuild clean build \
